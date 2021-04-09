@@ -18,7 +18,7 @@ class MemberServiceIntTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
-//    @Commit
+    @Commit
     public void 회원가입() throws Exception {
         //Given
         Member member = new Member();
@@ -29,6 +29,14 @@ class MemberServiceIntTest {
         Member findMember = memberRepository.findById(saveId).get();
         assertEquals(member.getName(), findMember.getName());
     }
+
+    @Test
+    @Commit
+    public void 회원_이름_찾기() throws Exception {
+        Member findMember = memberRepository.findByName("송슬기").get();
+        assertEquals("송슬기", findMember.getName());
+    }
+
     @Test
     public void 중복_회원_예외() throws Exception {
         //Given
